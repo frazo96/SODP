@@ -33,7 +33,6 @@ def twoBodyProp(initial_state,tspan):
     #resulting vectos#
     ephemeris = list(zip(sol.y[0],sol.y[1],sol.y[2],
                           sol.y[3],sol.y[4],sol.y[5]))
-    breakpoint()
     return ephemeris[-1]
 
 
@@ -41,11 +40,15 @@ def twoBodyProp(initial_state,tspan):
 if __name__ == "__main__":
     initial_state = np.array([7088580.789,-64.326,920514,
                           -10.20544809,-522.85385193,7482.07514112])  # m , m/s
-    initial_state = np.array([-5579681.52,2729244.60,2973901.72,
+    
+    # example 2.2.4.1, space shuttle initial condition
+    initial_shuttle_state = np.array([5492000.34,3984001.40,2955.81,
+                          -3931.046491,5498.676921,3665.980697])  # m , m/s
+    # example 2.25 shuttle space after 30 minutes
+    shuttle_state_after_30 = np.array([-5579681.52,2729244.60,2973901.72,
                           3921.809270,6300.799313,1520.178404])  # m , m/s
-    #time interval#
-    tspan = np.arange(0,30*60,1)
-
-    result = twoBodyProp(initial_state,tspan)
-    # TODO, result should match the inital state!!! not working...
+    
+    #time interval
+    tspan = np.arange(0,3000,0.001)
+    result = twoBodyProp(initial_shuttle_state,tspan)
     print(result)
